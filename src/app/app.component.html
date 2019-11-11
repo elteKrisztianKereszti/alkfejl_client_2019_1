@@ -20,4 +20,9 @@
 
 <app-foo></app-foo>
 
+<input type="button" value="IncrementMe" (click)="increment()">
+<p>theNumber: {{theNumber}}</p>
+<p>'theNumber' > than 5 => glink appeares</p>
+<glink *ngIf="theNumber > 5" searchField="alma" [num]="theNumber"></glink>
+
 <router-outlet></router-outlet>

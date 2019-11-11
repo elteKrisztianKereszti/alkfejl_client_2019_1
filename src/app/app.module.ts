@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { FooComponent } from './foo/foo.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatButtonToggleModule, MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueFormComponent } from './issue-form/issue-form.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component'; 
 import { RoutingModule } from './routing/routing.module';
+import { GlinkComponent } from './glink/glink.component';
+import { StatusFilterComponent } from './status-filter/status-filter.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,16 @@ import { RoutingModule } from './routing/routing.module';
     FooComponent,
     IssueListComponent,
     IssueFormComponent,
-    IssueDetailComponent
+    IssueDetailComponent,
+    GlinkComponent,
+    StatusFilterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonToggleModule,
     MatButtonModule,
     FlexLayoutModule,
     NgbModule,

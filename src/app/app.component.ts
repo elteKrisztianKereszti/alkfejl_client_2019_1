@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  searchWord: string = "alma";
   title = 'issue-tracker-client';
+  theNumber: number = 0;
+  increment() {
+    this.theNumber++;
+  }
 }

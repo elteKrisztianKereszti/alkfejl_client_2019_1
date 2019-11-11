@@ -1,1 +1,25 @@
-<p>issue-list works!</p>
+<div class="row">
+    <div class="col">
+      <h1 class="display-2">My issues</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Location</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let issue of filteredIssues" >
+            <th scope="row">{{ issue.id }}</th>
+            <td>{{ issue.location }}</td>
+            <td>{{ issue.description }}</td>
+            <td>{{ issue.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <status-filter [status]="selectedStatus" (onChange)="onFilterChange($event)"></status-filter>
