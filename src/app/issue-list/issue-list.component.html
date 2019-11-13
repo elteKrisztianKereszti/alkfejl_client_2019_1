@@ -27,7 +27,7 @@
   </div>
   
   <status-filter [status]="selectedStatus" (onChange)="onFilterChange($event)"></status-filter>
-  Selected issue: {{ selectedIssue | json }}
+  
   <button mat-raised-button color="primary" (click)="onNewClick()">New issue</button>
   <div class="col" *ngIf="selectedIssue">
     <issue-form [issue]="selectedIssue" (onSubmit)="onFormSubmit($event)"></issue-form>

@@ -43,7 +43,7 @@ export class IssueListComponent implements OnInit {
       this.selectedIssue.id = Math.floor(Math.random()*1000000);
       this.selectedIssue.location = issue.location;
       this.selectedIssue.description = issue.description;
-      this.selectedIssue.status = 'ADDED';
+      this.selectedIssue.status = 'NEW';
       this.issues.push(this.selectedIssue);
     }
     this.selectedIssue = null;
@@ -58,5 +58,4 @@ export class IssueListComponent implements OnInit {
     ? this.issues
     : this.issues.filter(issue => issue.status === this.selectedStatus);
   }
-
 }
