@@ -6,7 +6,7 @@ import { Issue } from "./issue";
 })
 export class IssueService {
 
-  issues: Issue[] = [
+  private issues: Issue[] = [
     {
       id: 1,
       location: 'PC5',
@@ -35,11 +35,11 @@ export class IssueService {
   
   constructor() { }
   
-  getIssues() {
+  getIssues(): Issue[] {
     return this.issues;
   }
   
-  getIssue(id) {
+  getIssue(id: number): Issue {
     return this.issues.find(i => i.id == id);
   }
 

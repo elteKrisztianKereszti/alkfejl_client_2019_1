@@ -8,12 +8,11 @@ import { IssueService } from '../issue.service';
   styleUrls: ['./issue-list.component.css']
 })
 export class IssueListComponent implements OnInit {
-  filteredIssues: Issue[];
-  selectedStatus: string;
-  theNumber:number = 0;
-  
-  issues: Issue[] = [];
-  selectedIssue: Issue;
+  public filteredIssues: Issue[];
+  public selectedStatus: string;
+  public selectedIssue: Issue;
+
+  private issues: Issue[] = [];
 
   constructor(
     private issueService: IssueService
@@ -21,21 +20,21 @@ export class IssueListComponent implements OnInit {
     this.issues = issueService.getIssues();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.selectedStatus = '';
     this.filter();
   }
 
-  onFilterChange(status) {
+  onFilterChange(status: string): void {
     this.selectedStatus = status;
     this.filter();
   }
 
-  onSelectIssue(issue) {
+  onSelectIssue(issue: Issue): void {
     this.selectedIssue = issue;
   }
 
-  onFormSubmit(issue: Issue) {
+  onFormSubmit(issue: Issue): void {
     if (issue.id > 0) {
       this.selectedIssue.location = issue.location;
       this.selectedIssue.description = issue.description;
@@ -49,11 +48,11 @@ export class IssueListComponent implements OnInit {
     this.selectedIssue = null;
   }
   
-  onNewClick() {
+  onNewClick(): void {
     this.selectedIssue = new Issue();
   }
 
-  filter() {
+  private filter(): void {
     this.filteredIssues = this.selectedStatus === ''
     ? this.issues
     : this.issues.filter(issue => issue.status === this.selectedStatus);

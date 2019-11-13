@@ -5,19 +5,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './status-filter.component.html',
   styleUrls: [ './status-filter.component.css' ]
 })
-export class StatusFilterComponent implements OnInit {
+export class StatusFilterComponent  {
 
-  statuses: string[] = [ 'NEW', 'INPROGRESS', 'RESOLVED', 'CLOSED' ];
   @Input('status') selectedStatus: string = '';
+  public statuses: string[] = [ 'NEW', 'INPROGRESS', 'RESOLVED', 'CLOSED' ];
   @Output() onChange = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {
-
-  }
-
-  onFilterChange(status: string) {
+  onFilterChange(status: string): void {
     this.selectedStatus = status;
     this.onChange.emit(status);
   }
