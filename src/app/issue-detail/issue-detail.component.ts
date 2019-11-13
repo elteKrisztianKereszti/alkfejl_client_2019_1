@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Issue } from '../issue';
+import { ActivatedRoute } from '@angular/router';
+import { IssueService } from '../issue.service';
 
 @Component({
   selector: 'app-issue-detail',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-detail.component.css']
 })
 export class IssueDetailComponent implements OnInit {
+  
+  public issue: Issue = null;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute,
+    private issueService: IssueService
+  ) { }
+  
+  ngOnInit(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.issue = this.issueService.getIssue(id);
   }
-
 }

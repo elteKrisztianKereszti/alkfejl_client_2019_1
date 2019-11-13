@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from "../issue";
+import { IssueService } from '../issue.service';
 
 @Component({
   selector: 'app-issue-list',
@@ -11,46 +12,46 @@ export class IssueListComponent implements OnInit {
   selectedStatus: string;
   theNumber:number = 0;
   
-  issues: Issue[] = [
-    {
-      id: 1,
-      location: 'PC5',
-      description: 'Bad',
-      status: 'NEW',
-    },
-    {
-      id: 2,
-      location: 'PC5',
-      description: 'Very Bad',
-      status: 'INPROGRESS',
-    },
-    {
-      id: 3,
-      location: 'PC7',
-      description: 'Average',
-      status: 'INPROGRESS',
-    },
-    {
-      id: 4,
-      location: 'PC3',
-      description: 'Broken Heart',
-      status: 'RESOLVED'
-    },
-  ];
+  issues: Issue[] = [];
+  selectedIssue: Issue;
 
-  constructor() { }
-
+  constructor(
+    private issueService: IssueService
+  ) { 
+    this.issues = issueService.getIssues();
+  }
 
   ngOnInit() {
     this.selectedStatus = '';
     this.filter();
   }
 
-  onFilterChange(status: string) {
+  onFilterChange(status) {
     this.selectedStatus = status;
     this.filter();
   }
 
+  onSelectIssue(issue) {
+    this.selectedIssue = issue;
+  }
+
+  onFormSubmit(issue: Issue) {
+    if (issue.id > 0) {
+      this.selectedIssue.location = issue.location;
+      this.selectedIssue.description = issue.description;
+    } else {
+      this.selectedIssue.id = Math.floor(Math.random()*1000000);
+      this.selectedIssue.location = issue.location;
+      this.selectedIssue.description = issue.description;
+      this.selectedIssue.status = 'ADDED';
+      this.issues.push(this.selectedIssue);
+    }
+    this.selectedIssue = null;
+  }
+  
+  onNewClick() {
+    this.selectedIssue = new Issue();
+  }
 
   filter() {
     this.filteredIssues = this.selectedStatus === ''

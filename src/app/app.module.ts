@@ -14,6 +14,8 @@ import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { RoutingModule } from './routing/routing.module';
 import { GlinkComponent } from './glink/glink.component';
 import { StatusFilterComponent } from './status-filter/status-filter.component';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import { StatusFilterComponent } from './status-filter/status-filter.component';
     NgbModule,
     MatMenuModule,
     RoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

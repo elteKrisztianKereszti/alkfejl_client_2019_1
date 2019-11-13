@@ -1,1 +1,41 @@
-<p>issue-form works!</p>
+<form (submit)="submit(issueForm)" #issueForm="ngForm">
+    <div class="form-group">
+      <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="location"
+          [(ngModel)]="model.location"
+          aria-describedby="locationHelp"
+          placeholder="Enter location"
+          required
+          pattern="PC\d+"
+          #location="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="location.invalid && (location.dirty || location.touched) && location.errors.required">
+        Location is required!
+      </mat-error>
+      <mat-error *ngIf="location.invalid && (location.dirty || location.touched) && location.errors.pattern">
+        Location must start with PC...!
+      </mat-error>
+    </div>
+    
+    <div class="form-group">
+      <!-- <small id="descriptionHelp" class="form-text text-muted">The error details</small> -->
+      <mat-form-field>
+        <textarea matInput
+          name="description"
+          [(ngModel)]="model.description"
+          aria-describedby="descriptionHelp"
+          placeholder="Enter issue details">
+        </textarea>
+      </mat-form-field>
+    </div>
+    
+    <button mat-raised-button
+      [disabled]="!issueForm.valid" 
+      type="submit"
+      color="primary">
+      Save issue
+    </button>
+  </form>
