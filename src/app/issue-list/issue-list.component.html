@@ -5,21 +5,24 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Title</th>
             <th scope="col">Location</th>
-            <th scope="col">Description</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let issue of filteredIssues" (click)="onSelectIssue(issue)" [class.table-info]="issue === selectedIssue" >
             <th scope="row">{{ issue.id }}</th>
-            <td>{{ issue.location }}</td>
             <td>
               <a [routerLink]="['/issues', issue.id]">
-                {{ issue.description }}
+                {{ issue.title }}
               </a>
             </td>
+            <td>{{ issue.location }}</td>
             <td>{{ issue.status }}</td>
+            <td>
+              <button mat-raised-button color="primary" (click)="onDeleteClick(issue.id)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>

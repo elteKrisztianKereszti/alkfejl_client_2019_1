@@ -17,11 +17,11 @@ export class IssueListComponent implements OnInit {
   constructor(
     private issueService: IssueService
   ) { 
-    this.issues = issueService.getIssues();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.selectedStatus = '';
+    this.issues = await this.issueService.getIssues();
     this.filter();
   }
 
@@ -34,22 +34,38 @@ export class IssueListComponent implements OnInit {
     this.selectedIssue = issue;
   }
 
-  onFormSubmit(issue: Issue): void {
+  async onFormSubmit(issue: Issue): Promise<void> {
     if (issue.id > 0) {
+      await this.issueService.updateIssue(issue)
       this.selectedIssue.location = issue.location;
-      this.selectedIssue.description = issue.description;
+      this.selectedIssue.title = issue.title;
+      this.selectedIssue.description = issue.description;;
+      
     } else {
       this.selectedIssue.id = Math.floor(Math.random()*1000000);
       this.selectedIssue.location = issue.location;
+      this.selectedIssue.title = issue.title;
       this.selectedIssue.description = issue.description;
       this.selectedIssue.status = 'NEW';
-      this.issues.push(this.selectedIssue);
+      this.issueService.createIssue(issue)
+                        .then(createdIssue => {
+                          this.issues.push(createdIssue);
+                        });
     }
     this.selectedIssue = null;
   }
   
   onNewClick(): void {
     this.selectedIssue = new Issue();
+  }
+  
+  onDeleteClick(id: number) {
+    this.issueService.deleteIssue(id)
+    .then(async () => {
+      this.selectedIssue = null;
+      this.issues = await this.issueService.getIssues();
+      this.filter();
+    })
   }
 
   private filter(): void {
