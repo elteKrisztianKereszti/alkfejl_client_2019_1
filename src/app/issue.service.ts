@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Issue } from "./issue";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic dXNlcjpwYXNzd29yZA==', // user/password
-  })
-};
+import { AuthService, httpOptions } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +11,8 @@ export class IssueService {
   private issueUrl: string = 'http://localhost:8080/issues';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService 
   ) { }
 
   getIssues(): Promise<Issue[]> {

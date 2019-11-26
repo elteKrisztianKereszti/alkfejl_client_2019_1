@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { IssueListComponent } from "../issue-list/issue-list.component";
 import { IssueFormComponent } from '../issue-form/issue-form.component';
 import { IssueDetailComponent } from '../issue-detail/issue-detail.component';
+import { AuthGuard } from '../auth.guard';
+import { LoginFormComponent } from '../login-form/login-form.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'issues',
-    component: IssueListComponent
+    component: IssueListComponent,
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'issues/add',
@@ -22,6 +25,10 @@ const routes: Routes = [
   {
     path: 'issues/:id',
     component: IssueDetailComponent
+  },
+  {
+    path: 'login',
+    component: LoginFormComponent
   },
 ];
 

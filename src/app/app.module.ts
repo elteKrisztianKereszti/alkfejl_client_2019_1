@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,6 +15,7 @@ import { IssueFormComponent } from './issue-form/issue-form.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component'; 
 import { StatusFilterComponent } from './status-filter/status-filter.component';
 import { RoutingModule } from './routing/routing.module';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,13 @@ import { RoutingModule } from './routing/routing.module';
     IssueListComponent,
     IssueFormComponent,
     IssueDetailComponent,
-    StatusFilterComponent
+    StatusFilterComponent,
+    LoginFormComponent
   ],
   imports: [
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
